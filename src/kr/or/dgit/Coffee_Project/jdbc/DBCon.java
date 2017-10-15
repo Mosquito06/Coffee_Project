@@ -9,6 +9,11 @@ import java.util.Properties;
 
 public class DBCon {
 	private static final DBCon instance = new DBCon();
+	private Connection connection;
+
+	public Connection getConnection() {
+		return connection;
+	}
 
 	public static DBCon getInstance() {
 		return instance;
@@ -16,10 +21,11 @@ public class DBCon {
 
 	private DBCon() {
 		Properties properties = getProperties("conf.properties");
-
+				
 		try {
-			Connection con = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"),
+			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"),
 					properties.getProperty("pwd"));
+			
 		} catch (SQLException e) {
 			System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
 			e.printStackTrace();

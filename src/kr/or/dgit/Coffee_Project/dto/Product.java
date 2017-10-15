@@ -20,6 +20,10 @@ public class Product {
 		this.pName = pName;
 	}
 
+	public Product(String pCode) {
+		this.pCode = pCode;
+	}
+
 	public Product(String pCode, String pName) {
 		this.pCode = pCode;
 		this.pName = pName;
