@@ -3,6 +3,8 @@ package kr.or.dgit.Coffee_Project.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
@@ -19,7 +21,7 @@ public class ProductDao {
 
 	}
 
-	public Product SelectNameByNo(Product item) throws SQLException {
+	public Product SelectProductByNo(Product item) throws SQLException {
 		String sql = "select pCode, pName from product where pCode = ?";
 		Product product = null;
 
@@ -36,6 +38,16 @@ public class ProductDao {
 
 		return product;
 	}
+	
+	public List<Product> selectProductByAll(){
+		String sql = "select pCode, pName, pPrice, pTotal, oPrice, sTax, sPrice, coffee.pMargin , income.pMargin from income join coffee using(pCode)";
+		List<Product> lists = new ArrayList<>();
+		
+		return lists;
+	
+	
+	}
+	
 
 	private Product getProduct(ResultSet rs) throws SQLException {
 		String pCode = rs.getString(1);

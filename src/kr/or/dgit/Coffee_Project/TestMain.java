@@ -20,7 +20,7 @@ public class TestMain {
 		
 		Product product = new Product("A001");
 		try {
-			Product result = pd.SelectNameByNo(product);
+			Product result = pd.SelectProductByNo(product);
 			System.out.println(result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
