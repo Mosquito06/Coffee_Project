@@ -1,25 +1,25 @@
 package kr.or.dgit.Coffee_Project.dto;
 
 public class Coffee {
-	private String pCode;
-	private String pName;
+	private Product pCode;
+	private Product pName;
 	private int pPrice;
 	private int pTotal;
 	private int pMargin;
 
-	public String getpCode() {
+	public Product getpCode() {
 		return pCode;
 	}
 
-	public void setpCode(String pCode) {
+	public void setpCode(Product pCode) {
 		this.pCode = pCode;
 	}
 
-	public String getpName() {
+	public Product getpName() {
 		return pName;
 	}
 
-	public void setpName(String pName) {
+	public void setpName(Product pName) {
 		this.pName = pName;
 	}
 
@@ -47,7 +47,7 @@ public class Coffee {
 		this.pMargin = pMargin;
 	}
 
-	public Coffee(String pCode, String pName, int pPrice, int pTotal, int pMargin) {
+	public Coffee(Product pCode, Product pName, int pPrice, int pTotal, int pMargin) {
 		this.pCode = pCode;
 		this.pName = pName;
 		this.pPrice = pPrice;
@@ -57,7 +57,7 @@ public class Coffee {
 
 	@Override
 	public String toString() {
-		return String.format("제품코드 : %s, 제품명 : %s, 제품단가 : %s,  판매수량 : %s, 마진율 : %s", pCode, pName, pPrice,
+		return String.format("제품코드 : %s, 제품명 : %s, 제품단가 : %s,  판매수량 : %s, 마진율 : %s", pCode.getpCode(), pName.getpName(), pPrice,
 				pTotal, pMargin);
 	}
 

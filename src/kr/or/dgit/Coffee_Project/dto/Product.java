@@ -14,14 +14,19 @@ public class Product {
 
 	public String getpName() {
 		return pName;
-	}
+	} 
 
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
 
-	public Product(String pCode) {
-		this.pCode = pCode;
+	public Product(String pCode, int Difference) {
+		if (Difference == 0) {
+			this.pCode = pCode;
+		} else {
+			this.pName = pCode;
+		}
+
 	}
 
 	public Product(String pCode, String pName) {
