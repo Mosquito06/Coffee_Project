@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import kr.or.dgit.Coffee_Project.dao.CoffeeAndIncomeDao;
 import kr.or.dgit.Coffee_Project.dao.CoffeeDao;
 import kr.or.dgit.Coffee_Project.dao.IncomeDao;
 import kr.or.dgit.Coffee_Project.dao.ProductDao;
 import kr.or.dgit.Coffee_Project.dto.Coffee;
+import kr.or.dgit.Coffee_Project.dto.CoffeeAndIncome;
 import kr.or.dgit.Coffee_Project.dto.Income;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
@@ -25,6 +27,8 @@ public class TestMain {
 		//Coffee cf = new Coffee(new Product("B003", 0), new Product("ÆÏºù¼ö", 1), 8000, 50, 5);
 		Coffee cf2 = new Coffee(new Product("B003", 0), new Product("ÆÏºù¼ö", 1), 9500, 100, 5);
 		Income ic = new Income(new Product("A002", 0));
+		CoffeeAndIncomeDao  dffd = new CoffeeAndIncomeDao();
+		
 		
 		ProductDao pd = new ProductDao();
 		IncomeDao id = new IncomeDao();
@@ -39,14 +43,15 @@ public class TestMain {
 				e1.printStackTrace();
 			}*/
 		
-			List<Product> result;
+			List<CoffeeAndIncome> result;
 			try {
-				result = pd.selectItemByAll();
+				result = dffd.selectItemOrderbySmargin();
 				System.out.println(result);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 		
 

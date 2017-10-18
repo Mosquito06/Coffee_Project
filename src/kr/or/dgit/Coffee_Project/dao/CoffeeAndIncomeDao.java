@@ -13,31 +13,39 @@ import kr.or.dgit.Coffee_Project.jdbc.DBCon;
 public class CoffeeAndIncomeDao {
 
 	public CoffeeAndIncomeDao() {
-	
+
 	}
-	
-	public List<CoffeeAndIncome> selectItemOrderbySprice() throws SQLException{
+
+	public List<CoffeeAndIncome> selectItemOrderbySprice() throws SQLException {
 		String sql = "select (select count(*)+1 from income where sPrice > t.sPrice) as '순위', pCode, pName, pPrice, pTotal, oPrice, sTax, sPrice, coffee.pMargin, t.sMargin from income t join coffee using(pCode) order by sPrice desc";
 		List<CoffeeAndIncome> lists = new ArrayList<>();
-		
-		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();){
-			while(rs.next()){
+
+		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();) {
+			while (rs.next()) {
 				lists.add(getCofeeAndIncome(rs));
 			}
-			
+
 		}
 		return lists;
 	}
-	
-	public List<CoffeeAndIncome> selectItemOrderbySmargin(){
+
+	public List<CoffeeAndIncome> selectItemOrderbySmargin() throws SQLException {
 		String sql = "select (select count(*)+1 from income where sMargin > t.sMargin) as '순위', pCode, pName, pPrice, pTotal, oPrice, sTax, sPrice, coffee.pMargin, t.sMargin from income t join coffee using(pCode) order by sMargin desc";
 		List<CoffeeAndIncome> lists = new ArrayList<>();
-		
+
+		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();) {
+			while (rs.next()) {
+				lists.add(getCofeeAndIncome(rs));
+			}
+
+		}
+
 		return lists;
-		
+
 	}
-	
+
 	private CoffeeAndIncome getCofeeAndIncome(ResultSet rs) throws SQLException {
 		int rank = rs.getInt("순위");
 		Product pCode = new Product(rs.getString("pCode"), 0);
@@ -49,9 +57,8 @@ public class CoffeeAndIncomeDao {
 		int sTax = rs.getInt("sTax");
 		int oPrice = rs.getInt("oPrice");
 		int sMargin = rs.getInt("sMargin");
-		
+
 		return new CoffeeAndIncome(rank, pCode, pName, pPrice, pTotal, pMargin, sPrice, sTax, oPrice, sMargin);
 	}
-	
-	
+
 }
