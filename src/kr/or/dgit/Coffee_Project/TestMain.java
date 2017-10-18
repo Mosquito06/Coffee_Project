@@ -13,8 +13,10 @@ import kr.or.dgit.Coffee_Project.dto.CoffeeAndIncome;
 import kr.or.dgit.Coffee_Project.dto.Income;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
+import kr.or.dgit.Coffee_Project.service.CoffeeAndIncomeService;
 import kr.or.dgit.Coffee_Project.service.CoffeeService;
 import kr.or.dgit.Coffee_Project.service.IncomeService;
+import kr.or.dgit.Coffee_Project.service.ProductService;
 
 public class TestMain {
 
@@ -30,7 +32,7 @@ public class TestMain {
 		Coffee cf2 = new Coffee(new Product("B003", 0), new Product("ÆÏºù¼ö", 1), 9500, 100, 5);
 		Income ic = new Income(new Product("A002", 0));
 		CoffeeAndIncomeDao  dffd = new CoffeeAndIncomeDao();
-		
+		Product pr = new Product("A001", 0);
 		
 		ProductDao pd = new ProductDao();
 		IncomeDao id = new IncomeDao();
@@ -46,7 +48,7 @@ public class TestMain {
 			}*/
 		
 		
-			
+		System.out.println(CoffeeAndIncomeService.getInstance().selectItemOrderbySprice());
 		
 
 	}
