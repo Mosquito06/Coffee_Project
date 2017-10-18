@@ -5,7 +5,7 @@ public class Income {
 	private int sPrice;
 	private int sTax;
 	private int oPrice;
-	private int pMargin;
+	private int sMargin;
 
 	public Product getpCode() {
 		return pCode;
@@ -40,11 +40,11 @@ public class Income {
 	}
 
 	public int getpMargin() {
-		return pMargin;
+		return sMargin;
 	}
 
 	public void setpMargin(int pMargin) {
-		this.pMargin = pMargin;
+		this.sMargin = pMargin;
 	}
 
 	public Income(Product pCode) {
@@ -56,13 +56,13 @@ public class Income {
 		this.sPrice = sPrice;
 		this.sTax = sTax;
 		this.oPrice = oPrice;
-		this.pMargin = pMargin;
+		this.sMargin = pMargin;
 	}
 
 	@Override
 	public String toString() {
 		return String.format("제품코드 : %s, 판매금액 : %s, 부가세액 : %s, 공급가액 : %s, 마진액 : %s", pCode.getpCode(), sPrice, sTax,
-				oPrice, pMargin);
+				oPrice, sMargin);
 	}
 
 }

@@ -16,7 +16,7 @@ public class IncomeDao {
 	}
 
 	public Income selectItemByNo(Income item) throws SQLException {
-		String sql = "select pCode, sPrice, sTax, oPrice, pMargin from income where pCode = ?";
+		String sql = "select pCode, sPrice, sTax, oPrice, sMargin from income where pCode = ?";
 		Income income = null;
 
 		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);) {
@@ -33,7 +33,7 @@ public class IncomeDao {
 	}
 	
 	public List<Income> selectItemByAll() throws SQLException{
-		String sql = "select pCode, pCode, sPrice, sTax, oPrice, pMargin from income";		
+		String sql = "select pCode, pCode, sPrice, sTax, oPrice, sMargin from income";		
 		List<Income> lists = new ArrayList<>();
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
