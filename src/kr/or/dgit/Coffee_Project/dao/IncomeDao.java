@@ -50,8 +50,8 @@ public class IncomeDao {
 		int sPrice = rs.getInt("sPrice");
 		int sTax = rs.getInt("sTax");
 		int oPrice = rs.getInt("oPrice");
-		int pMargin = rs.getInt("pMargin");
-		return new Income(pCode, sPrice, sTax, oPrice, pMargin);
+		int sMargin = rs.getInt("sMargin");
+		return new Income(pCode, sPrice, sTax, oPrice, sMargin);
 	}
 
 }

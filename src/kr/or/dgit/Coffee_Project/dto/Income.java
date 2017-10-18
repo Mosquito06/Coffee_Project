@@ -51,12 +51,12 @@ public class Income {
 		this.pCode = pCode;
 	}
 
-	public Income(Product pCode, int sPrice, int sTax, int oPrice, int pMargin) {
+	public Income(Product pCode, int sPrice, int sTax, int oPrice, int sMargin) {
 		this.pCode = pCode;
 		this.sPrice = sPrice;
 		this.sTax = sTax;
 		this.oPrice = oPrice;
-		this.sMargin = pMargin;
+		this.sMargin = sMargin;
 	}
 
 	@Override

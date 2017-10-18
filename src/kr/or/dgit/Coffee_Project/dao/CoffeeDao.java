@@ -10,12 +10,13 @@ import java.util.List;
 import kr.or.dgit.Coffee_Project.dto.Coffee;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
+import kr.or.dgit.Coffee_Project.service.CoffeeService;
 
 public class CoffeeDao {
 	public CoffeeDao() {
 
 	}
-
+	
 	public void updateItem(Coffee item) throws SQLException{
 		String sql = "update coffee set pName = ?, pPrice = ?, pTotal =?, pMargin = ? where pCode = ?";
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){

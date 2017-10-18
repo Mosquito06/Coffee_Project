@@ -13,6 +13,8 @@ import kr.or.dgit.Coffee_Project.dto.CoffeeAndIncome;
 import kr.or.dgit.Coffee_Project.dto.Income;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
+import kr.or.dgit.Coffee_Project.service.CoffeeService;
+import kr.or.dgit.Coffee_Project.service.IncomeService;
 
 public class TestMain {
 
@@ -24,7 +26,7 @@ public class TestMain {
 		
 		
 		CoffeeDao cd = new CoffeeDao();
-		//Coffee cf = new Coffee(new Product("B003", 0), new Product("ÆÏºù¼ö", 1), 8000, 50, 5);
+		Coffee cf = new Coffee(new Product("B003", 0), new Product("ÆÏºù¼ö", 1), 8000, 50, 5);
 		Coffee cf2 = new Coffee(new Product("B003", 0), new Product("ÆÏºù¼ö", 1), 9500, 100, 5);
 		Income ic = new Income(new Product("A002", 0));
 		CoffeeAndIncomeDao  dffd = new CoffeeAndIncomeDao();
@@ -43,15 +45,7 @@ public class TestMain {
 				e1.printStackTrace();
 			}*/
 		
-			List<CoffeeAndIncome> result;
-			try {
-				result = dffd.selectItemOrderbySmargin();
-				System.out.println(result);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		
 			
 		
 
