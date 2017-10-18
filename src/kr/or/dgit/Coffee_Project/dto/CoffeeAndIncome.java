@@ -113,4 +113,8 @@ public class CoffeeAndIncome {
 				rank, pCode.getpCode(), pName.getpName(), pPrice, pTotal, pMargin, sPrice, sTax, oPrice, sMargin);
 	}
 
+	public Object[] toArray() {
+		return new Object[]{rank, pCode, pName, pPrice, pTotal, pMargin, sPrice, sTax, oPrice, oPrice};
+	}
+
 }

@@ -1,23 +1,34 @@
 package kr.or.dgit.Coffee_Project.list;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTable;
-import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
 
-public class SpriceList extends JPanel {
+import kr.or.dgit.Coffee_Project.dto.CoffeeAndIncome;
+import kr.or.dgit.Coffee_Project.service.CoffeeAndIncomeService;
+
+public class SpriceList extends AbstractList{
 	private JTable table;
+	private CoffeeAndIncomeService service;
+	
+	
+	public SpriceList(CoffeeAndIncomeService service) {
+		this.service = service;
+	}
 
-	public SpriceList() {
-		setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
 
+	@Override
+	protected Object[][] getData() {
+		List<CoffeeAndIncome> list = service.selectItemOrderbySprice();
+		
+		Object[][] datas = new Object[list.size()][];
+		for(int i = 0; i < list.size(); i++){
+			CoffeeAndIncome cai = list.get(i);
+			datas[i] = cai.toArray();
+		}
+		
+		return datas;
 	}
 
 }
