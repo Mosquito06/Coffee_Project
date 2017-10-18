@@ -16,6 +16,30 @@ public class CoffeeDao {
 
 	}
 
+	public void updateItem(Coffee item) throws SQLException{
+		String sql = "update coffee set pName = ?, pPrice = ?, pTotal =?, pMargin = ? where pCode = ?";
+		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){
+			pstmt.setString(1, item.getpName().getpName());
+			pstmt.setInt(2, item.getpPrice());
+			pstmt.setInt(3, item.getpTotal());
+			pstmt.setInt(4, item.getpMargin());
+			pstmt.setString(5, item.getpCode().getpCode());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	
+	public void deleteItem(Coffee item) throws SQLException{
+		String sql = "delete from coffee where pCode = ?";
+		Connection con = DBCon.getInstance().getConnection();
+		
+		try(PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, item.getpCode().getpCode());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	
 	public void insertItem(Coffee item) throws SQLException {
 		String sql = "insert into coffee values(?, ?, ?, ?, ?)";
 		Connection con = DBCon.getInstance().getConnection();
@@ -26,7 +50,7 @@ public class CoffeeDao {
 			pstmt.setInt(3, item.getpPrice());
 			pstmt.setInt(4, item.getpTotal());
 			pstmt.setInt(5, item.getpMargin());
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 		}
 
 	}

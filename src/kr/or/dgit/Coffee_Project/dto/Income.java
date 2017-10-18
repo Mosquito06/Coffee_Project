@@ -1,17 +1,17 @@
 package kr.or.dgit.Coffee_Project.dto;
 
 public class Income {
-	private String pCode;
+	private Product pCode;
 	private int sPrice;
 	private int sTax;
 	private int oPrice;
 	private int pMargin;
 
-	public String getpCode() {
+	public Product getpCode() {
 		return pCode;
 	}
 
-	public void setpCode(String pCode) {
+	public void setpCode(Product pCode) {
 		this.pCode = pCode;
 	}
 
@@ -47,7 +47,11 @@ public class Income {
 		this.pMargin = pMargin;
 	}
 
-	public Income(String pCode, int sPrice, int sTax, int oPrice, int pMargin) {
+	public Income(Product pCode) {
+		this.pCode = pCode;
+	}
+
+	public Income(Product pCode, int sPrice, int sTax, int oPrice, int pMargin) {
 		this.pCode = pCode;
 		this.sPrice = sPrice;
 		this.sTax = sTax;
@@ -57,10 +61,8 @@ public class Income {
 
 	@Override
 	public String toString() {
-		return String.format("제품코드 : %s, 판매금액 : %s, 부가세액 : %s, 공급가액 : %s, 마진액 : %s", pCode, sPrice, sTax,
+		return String.format("제품코드 : %s, 판매금액 : %s, 부가세액 : %s, 공급가액 : %s, 마진액 : %s", pCode.getpCode(), sPrice, sTax,
 				oPrice, pMargin);
 	}
 
-	
-	
 }
