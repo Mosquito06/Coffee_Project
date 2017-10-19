@@ -1,12 +1,10 @@
 package kr.or.dgit.Coffee_Project;
 
-import java.awt.BorderLayout;
 import java.sql.Connection;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import kr.or.dgit.Coffee_Project.common.ProductListComponent;
 import kr.or.dgit.Coffee_Project.dao.CoffeeAndIncomeDao;
 import kr.or.dgit.Coffee_Project.dao.CoffeeDao;
 import kr.or.dgit.Coffee_Project.dao.IncomeDao;
@@ -15,6 +13,9 @@ import kr.or.dgit.Coffee_Project.dto.Coffee;
 import kr.or.dgit.Coffee_Project.dto.Income;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
+import kr.or.dgit.Coffee_Project.list.AbstractList;
+import kr.or.dgit.Coffee_Project.list.SmarginList;
+import kr.or.dgit.Coffee_Project.service.CoffeeAndIncomeService;
 
 public class TestMain {
 
@@ -49,12 +50,12 @@ public class TestMain {
 		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jf.setBounds(10, 10, 700, 300);
 		
-		/*CoffeeAndIncomeService cai = new CoffeeAndIncomeService();
-		AbstractList al = new SmarginList(cai);*/
-		//al.loadData();
-		ProductListComponent lc = new ProductListComponent();
+		CoffeeAndIncomeService cai = new CoffeeAndIncomeService();
+		AbstractList al = new SmarginList(cai);
+		al.loadData();
+		//ProductListComponent lc = new ProductListComponent();
 		
-		jf.add(lc);
+		jf.add(al);
 		jf.setVisible(true);
 		
 	}

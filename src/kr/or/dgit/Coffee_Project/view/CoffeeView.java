@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -59,12 +61,49 @@ public class CoffeeView extends JFrame {
 		InputBtnPanel.setLayout(new GridLayout(0, 3, 5, 0));
 		
 		JButton btnAdd = new JButton("\uC785\uB825");
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		InputBtnPanel.add(btnAdd);
 		
 		JButton btnOutSmargin = new JButton("\uB9C8\uC9C4\uC561");
+		btnOutSmargin.addActionListener(new ActionListener() {
+			
+			private AbstractListView frame;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(frame == null){
+					frame = new SmarginView("마진액 순위");
+					frame.setVisible(true);
+				}else{
+					frame.setVisible(true);
+				}
+				
+			}
+		});
 		InputBtnPanel.add(btnOutSmargin);
 		
 		JButton btnOutSprice = new JButton("\uD310\uB9E4\uAE08\uC561");
+		btnOutSprice.addActionListener(new ActionListener() {
+			
+			private AbstractListView frame;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(frame == null){
+					frame = new SpriceView("판매 금액 순위");
+					frame.setVisible(true);
+				}else{
+					frame.setVisible(true);
+				}
+			}
+		});
 		InputBtnPanel.add(btnOutSprice);
 		
 		JLabel lblInput = new JLabel("\uD310\uB9E4\uC2E4\uC801 \uC785\uB825");
