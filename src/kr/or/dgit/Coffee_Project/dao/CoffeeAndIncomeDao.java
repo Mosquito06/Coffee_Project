@@ -25,7 +25,7 @@ public class CoffeeAndIncomeDao {
 			while (rs.next()) {
 				lists.add(getCofeeAndIncome(rs));
 			}
-
+			
 		}
 		return lists;
 	}
@@ -52,12 +52,11 @@ public class CoffeeAndIncomeDao {
 		Product pName = new Product(rs.getString("pName"), 1);
 		int pPrice = rs.getInt("pPrice");
 		int pTotal = rs.getInt("pTotal");
-		int pMargin = rs.getInt("pMargin");
 		int sPrice = rs.getInt("sPrice");
 		int sTax = rs.getInt("sTax");
 		int oPrice = rs.getInt("oPrice");
+		int pMargin = rs.getInt("pMargin");
 		int sMargin = rs.getInt("sMargin");
-
 		return new CoffeeAndIncome(rank, pCode, pName, pPrice, pTotal, pMargin, sPrice, sTax, oPrice, sMargin);
 	}
 

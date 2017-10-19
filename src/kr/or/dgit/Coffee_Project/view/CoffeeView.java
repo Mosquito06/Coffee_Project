@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -20,11 +21,15 @@ import kr.or.dgit.Coffee_Project.common.ProductListComponent;
 import kr.or.dgit.Coffee_Project.common.SaleListComponent;
 import kr.or.dgit.Coffee_Project.dto.Coffee;
 import kr.or.dgit.Coffee_Project.dto.Product;
+import kr.or.dgit.Coffee_Project.service.CoffeeService;
 import kr.or.dgit.Coffee_Project.Content.ProductContent;
 
 public class CoffeeView extends JFrame {
 
 	private JPanel contentPane;
+	private CoffeeContent coffeecontent;
+	private AbstactListComponent<Product> listProduct;
+	private AbstactListComponent<Coffee> listCoffee;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,7 +47,7 @@ public class CoffeeView extends JFrame {
 	public CoffeeView() {
 		setTitle("\uB9E4\uCD9C\uAD00\uB9AC");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 300);
+		setBounds(100, 100, 1000, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -50,7 +55,7 @@ public class CoffeeView extends JFrame {
 		setLocationRelativeTo(null);
 		
 		
-		CoffeeContent coffeecontent = new CoffeeContent();
+		coffeecontent = new CoffeeContent();
 		JPanel InputPanel = new JPanel();
 		contentPane.add(InputPanel);
 		InputPanel.setLayout(new BorderLayout(0, 5));
@@ -65,8 +70,18 @@ public class CoffeeView extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				try {
+					coffeecontent.isEmptyCheck();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
+					e1.printStackTrace();
+					//return;
+				}
+				Coffee coffee = coffeecontent.getContent();
+				CoffeeService.getInstance().insertItem(coffee);
+				listProduct.loadModel();
+				listCoffee.loadModel();
+				coffeecontent.clear();
 			}
 		});
 		InputBtnPanel.add(btnAdd);
@@ -80,8 +95,10 @@ public class CoffeeView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(frame == null){
 					frame = new SmarginView("마진액 순위");
+					frame.loadData();
 					frame.setVisible(true);
 				}else{
+					frame.loadData();
 					frame.setVisible(true);
 				}
 				
@@ -98,8 +115,10 @@ public class CoffeeView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(frame == null){
 					frame = new SpriceView("판매 금액 순위");
+					frame.loadData();
 					frame.setVisible(true);
 				}else{
+					frame.loadData();
 					frame.setVisible(true);
 				}
 			}
@@ -115,7 +134,7 @@ public class CoffeeView extends JFrame {
 		contentPane.add(ProductPanel);
 		ProductPanel.setLayout(new BorderLayout(0, 5));
 		
-		AbstactListComponent<Product> listProduct = new ProductListComponent();
+		listProduct = new ProductListComponent();
 		ProductPanel.add(listProduct, BorderLayout.CENTER);
 		
 		JPanel ProductInput = new JPanel();
@@ -127,7 +146,7 @@ public class CoffeeView extends JFrame {
 		
 		JPanel ProductBtnPanel = new JPanel();
 		ProductInput.add(ProductBtnPanel);
-		ProductBtnPanel.setLayout(new GridLayout(0, 2, 0, 10));
+		ProductBtnPanel.setLayout(new GridLayout(0, 2, 5, 10));
 		
 		JButton btnAddProduct = new JButton("\uCD94\uAC00");
 		ProductBtnPanel.add(btnAddProduct);
@@ -144,7 +163,7 @@ public class CoffeeView extends JFrame {
 		contentPane.add(SalePanel);
 		SalePanel.setLayout(new BorderLayout(0, 5));
 		
-		AbstactListComponent<Coffee> listCoffee = new SaleListComponent();
+		listCoffee = new SaleListComponent();
 		SalePanel.add(listCoffee, BorderLayout.CENTER);
 		
 		JPanel SaleBtnPanel = new JPanel();

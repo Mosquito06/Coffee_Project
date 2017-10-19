@@ -14,10 +14,12 @@ import java.awt.BorderLayout;
 
 public abstract class AbstactListComponent<T> extends JPanel {
 
+	private JScrollPane scrollPane;
+
 	public AbstactListComponent() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
 		DefaultListModel<T> model = createModel();
@@ -26,8 +28,22 @@ public abstract class AbstactListComponent<T> extends JPanel {
 		scrollPane.setViewportView(list);
 	}
 
+	public void loadModel(){
+		DefaultListModel<T> model = new DefaultListModel<>();
+		
+		List<T> list = setListAll();
+		for(T p : list){
+			model.addElement(p);
+		}
+ 		JList<T> jlist = new JList<>(model);
+ 		scrollPane.setViewportView(jlist);
+		
+	}
+	
 	protected abstract DefaultListModel<T> createModel();
 
-		
+	protected abstract List<T> setListAll();
+	
+	
 	
 }

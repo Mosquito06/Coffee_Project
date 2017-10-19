@@ -13,6 +13,7 @@ import kr.or.dgit.Coffee_Project.service.CoffeeAndIncomeService;
 public abstract class AbstractListView extends JFrame {
 
 	private JPanel contentPane;
+	private AbstractList abstractlist;
 	
 	public AbstractListView(String title) {
 		setTitle(title);
@@ -25,11 +26,14 @@ public abstract class AbstractListView extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
 		
-		AbstractList abstractlist = CreatList();
-		abstractlist.loadData();
+		abstractlist = CreatList();
 		contentPane.add(abstractlist, BorderLayout.CENTER);
 	}
 
 	protected abstract AbstractList CreatList();
+	
+	public void loadData(){
+		abstractlist.loadData();
+	}
 
 }

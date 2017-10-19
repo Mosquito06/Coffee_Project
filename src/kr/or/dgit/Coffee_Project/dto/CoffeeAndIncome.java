@@ -114,7 +114,7 @@ public class CoffeeAndIncome {
 	}
 
 	public Object[] toArray() {
-		return new Object[]{rank, pCode, pName, pPrice, pTotal, pMargin, sPrice, sTax, oPrice, oPrice};
+		return new Object[]{rank, pCode, pName, pPrice, pTotal, oPrice, sTax, sPrice, pMargin, sMargin};
 	}
 
 }

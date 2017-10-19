@@ -26,6 +26,11 @@ public class ProductListComponent extends AbstactListComponent<Product> {
 		return model;
 	}
 
+	@Override
+	protected List<Product> setListAll() {
+		return ProductService.getInstance().selectItemByAll();
+	}
+
 		
 	
 }

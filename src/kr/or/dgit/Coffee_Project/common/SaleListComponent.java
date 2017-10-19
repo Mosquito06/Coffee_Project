@@ -24,4 +24,9 @@ public class SaleListComponent extends AbstactListComponent<Coffee> {
 		return model;
 	}
 
+	@Override
+	protected List<Coffee> setListAll() {
+		return CoffeeService.getInstance().selectItembyAll();
+	}
+
 }
