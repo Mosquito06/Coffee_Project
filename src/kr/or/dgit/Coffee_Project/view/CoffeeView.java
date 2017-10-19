@@ -171,6 +171,16 @@ public class CoffeeView extends JFrame {
 		SaleBtnPanel.setLayout(new GridLayout(1, 0, 5, 0));
 		
 		JButton btnDeleteSale = new JButton("\uC0AD\uC81C");
+		btnDeleteSale.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Coffee coffee = listCoffee.getSelectItem();
+				CoffeeService.getInstance().deleteItem(coffee);
+				listCoffee.loadModel();
+				
+			}
+		});
 		SaleBtnPanel.add(btnDeleteSale);
 		
 		JLabel label = new JLabel("\uC2E4\uC801\uAD00\uB9AC");

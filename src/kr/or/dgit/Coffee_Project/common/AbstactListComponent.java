@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 public abstract class AbstactListComponent<T> extends JPanel {
 
 	private JScrollPane scrollPane;
+	private JList<T> list;
 
 	public AbstactListComponent() {
 		setLayout(new BorderLayout(0, 0));
@@ -23,7 +24,7 @@ public abstract class AbstactListComponent<T> extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 		
 		DefaultListModel<T> model = createModel();
-		JList<T> list = new JList<>(model);
+		list = new JList<>(model);
 		
 		scrollPane.setViewportView(list);
 	}
@@ -38,6 +39,12 @@ public abstract class AbstactListComponent<T> extends JPanel {
  		JList<T> jlist = new JList<>(model);
  		scrollPane.setViewportView(jlist);
 		
+	}
+	
+	public T getSelectItem(){
+		loadModel();
+		System.out.println(list.getSelectedValue());
+		return list.getSelectedValue();
 	}
 	
 	protected abstract DefaultListModel<T> createModel();

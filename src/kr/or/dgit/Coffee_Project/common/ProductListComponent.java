@@ -30,7 +30,6 @@ public class ProductListComponent extends AbstactListComponent<Product> {
 	protected List<Product> setListAll() {
 		return ProductService.getInstance().selectItemByAll();
 	}
-
 		
 	
 }
