@@ -57,7 +57,7 @@ public class CoffeeDao {
 	}
 
 	public List<Coffee> selectItemAll() throws SQLException {
-		String sql = "select pCode, pName, pPrice, pTotal, pMargin from coffee";
+		String sql = "select pCode, pName, pPrice, pTotal, pMargin from coffee order by pName";
 		List<Coffee> lists = new ArrayList<>();
 		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();) {

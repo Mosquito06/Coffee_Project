@@ -36,7 +36,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return String.format("力前内靛 : %s, 力前疙 : %s", pCode, pName);
+		return String.format("%s", pName == null? pCode: pName);
 	}
 
 }

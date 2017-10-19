@@ -32,7 +32,7 @@ public class ProductDao {
 	}
 	
 	public List<Product> selectItemByAll() throws SQLException{
-		String sql = "select pCode, pName from product";		
+		String sql = "select pCode, pName from product order by pName";		
 		List<Product> lists = new ArrayList<>();
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){

@@ -57,7 +57,7 @@ public class Coffee {
 
 	@Override
 	public String toString() {
-		return String.format("제품코드 : %s, 제품명 : %s, 제품단가 : %s,  판매수량 : %s, 마진율 : %s", pCode.getpCode(), pName.getpName(), pPrice,
+		return String.format("제품코드 : %s, 제품명 : %s, 제품단가 : %s 원, 판매수량 : %s 개, 마진율 : %s", pCode.getpCode(), pName.getpName(), pPrice,
 				pTotal, pMargin);
 	}
 
