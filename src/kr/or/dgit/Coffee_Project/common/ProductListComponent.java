@@ -31,5 +31,4 @@ public class ProductListComponent extends AbstactListComponent<Product> {
 		return ProductService.getInstance().selectItemByAll();
 	}
 		
-	
 }

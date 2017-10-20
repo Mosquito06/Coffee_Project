@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.or.dgit.Coffee_Project.dto.Coffee;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
 
@@ -22,6 +23,16 @@ public class ProductDao {
 		try(PreparedStatement pstmt = con.prepareStatement(sql);){
 			pstmt.setString(1, item.getpCode());
 			pstmt.setString(2, item.getpName());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public void deleteItem(Product item) throws SQLException{
+		String sql = "delete from product where pCode = ?";
+		Connection con = DBCon.getInstance().getConnection();
+		
+		try(PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, item.getpCode());
 			pstmt.executeUpdate();
 		}
 	}

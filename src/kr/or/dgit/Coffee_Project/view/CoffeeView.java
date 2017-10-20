@@ -67,15 +67,26 @@ public class CoffeeView extends JFrame {
 
 			@Override
 			public void focusGained(FocusEvent e) {
+				try {
+					coffeecontent.getPanelPcode().isEmptyCheck();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "제품코드를 먼저 입력하세요");
+					coffeecontent.getPanelPcode().getTextField().requestFocus();
+					return;
+				}	
+				
+				
 				String pCode = coffeecontent.getPanelPcode().getTextField().getText();
 				Product product = ProductService.getInstance().selectItemByno(new Product(pCode, 0));
-				try {
+				
+				try{
 					coffeecontent.getPanelPname().setTextValue(product.getpName());
-				} catch (NullPointerException err) {
+				} catch(NullPointerException err){
+					coffeecontent.getPanelPcode().getTextField().requestFocus();
 					JOptionPane.showMessageDialog(null, "등록되지 않은 제품입니다.");
-					coffeecontent.requestFocus();
-					return;
 				}
+				
+				
 			}
 
 		});
@@ -185,12 +196,23 @@ public class CoffeeView extends JFrame {
 				Product product = productContent.getContent();
 				ProductService.getInstance().insertItem(product);
 				listProduct.loadModel();
-
+				listCoffee.loadModel();
 			}
 		});
 		ProductBtnPanel.add(btnAddProduct);
 
 		JButton btnDeleteProduct = new JButton("\uC0AD\uC81C");
+		btnDeleteProduct.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Product product = listProduct.getSelectItem();
+				ProductService.getInstance().deleteItem(product);
+				listProduct.loadModel();
+				listCoffee.loadModel();
+			}
+		});
+		
 		ProductBtnPanel.add(btnDeleteProduct);
 
 		JLabel lblProduct = new JLabel("\uC81C\uD488\uAD00\uB9AC");
@@ -217,6 +239,7 @@ public class CoffeeView extends JFrame {
 				Coffee coffee = listCoffee.getSelectItem();
 				CoffeeService.getInstance().deleteItem(coffee);
 				listCoffee.loadModel();
+				listProduct.loadModel();
 
 			}
 		});
