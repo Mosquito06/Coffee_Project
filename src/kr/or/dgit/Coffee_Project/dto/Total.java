@@ -1,5 +1,7 @@
 package kr.or.dgit.Coffee_Project.dto;
 
+import java.text.DecimalFormat;
+
 public class Total {
 	private int oTprice;
 	private int sTtax;
@@ -47,10 +49,12 @@ public class Total {
 
 	@Override
 	public String toString() {
+		
 		return String.format("%s, %s, %s, %s", oTprice, sTtax, sTprice, sTmargin);
 	}
 	
 	public Object[] toArray(){
-		return new Object[]{"합계", null, null, null, null, oTprice, sTtax, sTprice, null, sTmargin};
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return new Object[]{"합계", null, null, null, null, df.format(oTprice), df.format(sTtax), df.format(sTprice), null, df.format(sTmargin)};
 	}
 }
