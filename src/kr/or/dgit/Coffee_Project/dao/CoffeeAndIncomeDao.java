@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.or.dgit.Coffee_Project.dto.CoffeeAndIncome;
 import kr.or.dgit.Coffee_Project.dto.Product;
+import kr.or.dgit.Coffee_Project.dto.Total;
 import kr.or.dgit.Coffee_Project.jdbc.DBCon;
 
 public class CoffeeAndIncomeDao {
@@ -43,7 +44,29 @@ public class CoffeeAndIncomeDao {
 		}
 
 		return lists;
+	}
+	
+	public List<Total> selectTotal() throws SQLException{
+		String sql = "select sum(oPrice), sum(sTax), sum(sPrice), sum(sMargin) from income";
+		List<Total> lists = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();) {
+			while (rs.next()) {
+				lists.add(getTotal(rs));
+			}
 
+		}
+
+		return lists;
+	}
+
+	private Total getTotal(ResultSet rs) throws SQLException {
+		int oTprice = rs.getInt("sum(oPrice)");
+		int sTtax = rs.getInt("sum(sTax)");
+		int sTprice = rs.getInt("sum(sPrice)");
+		int sTmargin = rs.getInt("sum(sMargin)");
+		return new Total(oTprice, sTtax, sTprice, sTmargin);
 	}
 
 	private CoffeeAndIncome getCofeeAndIncome(ResultSet rs) throws SQLException {

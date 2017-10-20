@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.or.dgit.Coffee_Project.dao.CoffeeAndIncomeDao;
 import kr.or.dgit.Coffee_Project.dto.CoffeeAndIncome;
+import kr.or.dgit.Coffee_Project.dto.Total;
 
 public class CoffeeAndIncomeService {
 	private static final CoffeeAndIncomeService instance = new CoffeeAndIncomeService();
@@ -30,6 +31,15 @@ public class CoffeeAndIncomeService {
 	public List<CoffeeAndIncome> selectItemOrderbySmargin(){
 		try {
 			return coffeeandincomedao.selectItemOrderbySmargin();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<Total> selectTotal(){
+		try {
+			return coffeeandincomedao.selectTotal();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
