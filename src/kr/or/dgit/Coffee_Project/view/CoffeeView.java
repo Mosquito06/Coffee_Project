@@ -74,8 +74,6 @@ public class CoffeeView extends JFrame {
 					coffeecontent.getPanelPcode().getTextField().requestFocus();
 					return;
 				}	
-				
-				
 				String pCode = coffeecontent.getPanelPcode().getTextField().getText();
 				Product product = ProductService.getInstance().selectItemByno(new Product(pCode, 0));
 				
@@ -85,8 +83,6 @@ public class CoffeeView extends JFrame {
 					coffeecontent.getPanelPcode().getTextField().requestFocus();
 					JOptionPane.showMessageDialog(null, "등록되지 않은 제품입니다.");
 				}
-				
-				
 			}
 
 		});
@@ -206,8 +202,13 @@ public class CoffeeView extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Product product = listProduct.getSelectItem();
-				ProductService.getInstance().deleteItem(product);
+				Product product = listProduct.getListValue();
+				try{
+					ProductService.getInstance().deleteItem(product);
+				}catch(NullPointerException err){
+					JOptionPane.showMessageDialog(null, "삭제할 제품을 선택하세요");
+					return;
+				}
 				listProduct.loadModel();
 				listCoffee.loadModel();
 			}
@@ -236,8 +237,13 @@ public class CoffeeView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Coffee coffee = listCoffee.getSelectItem();
-				CoffeeService.getInstance().deleteItem(coffee);
+				Coffee coffee = listCoffee.getListValue();
+				try{
+					CoffeeService.getInstance().deleteItem(coffee);
+				}catch(NullPointerException err){
+					JOptionPane.showMessageDialog(null, "삭제할 실적을 선택하세요");
+					return;
+				}
 				listCoffee.loadModel();
 				listProduct.loadModel();
 

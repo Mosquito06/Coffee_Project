@@ -33,8 +33,8 @@ public class ProductService {
 	public void deleteItem(Product product){
 			try {
 				productdao.deleteItem(product);
-			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "삭제가 완료되었습니다.");
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}

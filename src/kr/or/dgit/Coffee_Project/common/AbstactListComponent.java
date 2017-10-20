@@ -19,38 +19,35 @@ public abstract class AbstactListComponent<T> extends JPanel {
 
 	public AbstactListComponent() {
 		setLayout(new BorderLayout(0, 0));
-		
+
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
-		
+
 		DefaultListModel<T> model = createModel();
 		list = new JList<>(model);
-		
+
 		scrollPane.setViewportView(list);
 	}
 
-	public void loadModel(){
+	public void loadModel() {
 		DefaultListModel<T> model = new DefaultListModel<>();
-		
-		List<T> list = setListAll();
-		for(T p : list){
+
+		List<T> listAll = setListAll();
+		for (T p : listAll) {
 			model.addElement(p);
 		}
- 		JList<T> jlist = new JList<>(model);
- 		scrollPane.setViewportView(jlist);
+		list.setModel(model);
 		
+		scrollPane.setViewportView(list);
+
 	}
 	
-	public T getSelectItem(){
-		loadModel();
-		System.out.println(list.getSelectedValue());
+	public T getListValue(){
 		return list.getSelectedValue();
 	}
-	
+
 	protected abstract DefaultListModel<T> createModel();
 
 	protected abstract List<T> setListAll();
-	
-	
-	
+
 }
