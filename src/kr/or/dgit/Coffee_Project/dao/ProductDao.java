@@ -1,5 +1,6 @@
 package kr.or.dgit.Coffee_Project.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,18 @@ public class ProductDao {
 
 	}
 
+	public void insertItem(Product item) throws SQLException{
+		String sql = "insert into product values(?, ?)";
+		Connection con = DBCon.getInstance().getConnection();
+		
+		try(PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, item.getpCode());
+			pstmt.setString(2, item.getpName());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	
 	public Product selectItemByNo(Product item) throws SQLException {
 		String sql = "select pCode, pName from product where pCode = ?";
 		Product product = null;

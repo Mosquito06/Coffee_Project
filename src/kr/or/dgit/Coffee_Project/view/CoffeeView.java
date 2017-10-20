@@ -36,6 +36,7 @@ public class CoffeeView extends JFrame {
 	private CoffeeContent coffeecontent;
 	private AbstactListComponent<Product> listProduct;
 	private AbstactListComponent<Coffee> listCoffee;
+	private ProductContent productContent;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,21 +63,19 @@ public class CoffeeView extends JFrame {
 
 		coffeecontent = new CoffeeContent();
 		coffeecontent.getPanelPname().setEnable(false);
-		coffeecontent.getPanelPcode().getTextField().addFocusListener(new FocusAdapter() {
+		coffeecontent.getPanelPprice().getTextField().addFocusListener(new FocusAdapter() {
 
 			@Override
-			public void focusLost(FocusEvent e) {
-								
-				try{
-					 String pCode = coffeecontent.getPanelPcode().getTextField().getText();
-					Product product = ProductService.getInstance().selectItemByno(new Product(pCode, 0));
+			public void focusGained(FocusEvent e) {
+				String pCode = coffeecontent.getPanelPcode().getTextField().getText();
+				Product product = ProductService.getInstance().selectItemByno(new Product(pCode, 0));
+				try {
 					coffeecontent.getPanelPname().setTextValue(product.getpName());
-				}catch(NullPointerException err){
+				} catch (NullPointerException err) {
 					JOptionPane.showMessageDialog(null, "등록되지 않은 제품입니다.");
+					coffeecontent.requestFocus();
+					return;
 				}
-				
-				
-			
 			}
 
 		});
@@ -99,8 +98,7 @@ public class CoffeeView extends JFrame {
 					coffeecontent.isEmptyCheck();
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
-					e1.printStackTrace();
-					// return;
+					return;
 				}
 				Coffee coffee = coffeecontent.getContent();
 				CoffeeService.getInstance().insertItem(coffee);
@@ -166,8 +164,8 @@ public class CoffeeView extends JFrame {
 		ProductPanel.add(ProductInput, BorderLayout.SOUTH);
 		ProductInput.setLayout(new GridLayout(0, 1, 5, 5));
 
-		ProductContent panel = new ProductContent();
-		ProductInput.add(panel);
+		productContent = new ProductContent();
+		ProductInput.add(productContent);
 
 		JPanel ProductBtnPanel = new JPanel();
 		ProductInput.add(ProductBtnPanel);
@@ -178,6 +176,15 @@ public class CoffeeView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					productContent.isEmptyCheck();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
+					return;
+				}
+				Product product = productContent.getContent();
+				ProductService.getInstance().insertItem(product);
+				listProduct.loadModel();
 
 			}
 		});

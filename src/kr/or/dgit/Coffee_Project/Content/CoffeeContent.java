@@ -22,6 +22,10 @@ public class CoffeeContent extends JPanel {
 		return panelPcode;
 	}
 
+	public TextFieldComponent getPanelPprice() {
+		return panelPprice;
+	}
+
 	public TextFieldComponent getPanelPname() {
 		return panelPname;
 	}
