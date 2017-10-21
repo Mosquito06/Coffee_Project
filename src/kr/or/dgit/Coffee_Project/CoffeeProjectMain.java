@@ -63,12 +63,16 @@ public class CoffeeProjectMain extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (frame == null) {
-					frame = new CoffeeView();
-					frame.setVisible(true);
-				} else {
-					frame.setVisible(true);
-				}
+					if (frame == null) {
+						frame = new CoffeeView();
+						frame.getListCoffee().loadModel();
+						frame.getListProduct().loadModel();
+						frame.setVisible(true);
+					} else {
+						frame.getListCoffee().loadModel();
+						frame.getListProduct().loadModel();
+						frame.setVisible(true);
+					}
 			}
 		});
 		BtnTopPanel.add(btnStart);
