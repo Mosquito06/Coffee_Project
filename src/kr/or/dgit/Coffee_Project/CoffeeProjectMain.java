@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.Coffee_Project.view.CoffeeView;
 import kr.or.dgit.Coffee_Setting.jdbcSetting;
 
+
 public class CoffeeProjectMain extends JFrame {
 
 	private JPanel contentPane;
