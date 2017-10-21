@@ -1,5 +1,7 @@
 package kr.or.dgit.Coffee_Project.dto;
 
+import java.text.DecimalFormat;
+
 public class CoffeeAndIncome {
 	private int rank;
 	private Product pCode;
@@ -114,7 +116,8 @@ public class CoffeeAndIncome {
 	}
 
 	public Object[] toArray() {
-		return new Object[]{rank, pCode, pName, pPrice, pTotal, oPrice, sTax, sPrice, pMargin, sMargin};
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return new Object[]{rank, pCode, pName, df.format(pPrice), pTotal, df.format(oPrice), df.format(sTax), df.format(sPrice), pMargin, df.format(sMargin/100)};
 	}
 
 }

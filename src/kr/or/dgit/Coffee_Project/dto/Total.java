@@ -55,6 +55,6 @@ public class Total {
 	
 	public Object[] toArray(){
 		DecimalFormat df = new DecimalFormat("#,##0");
-		return new Object[]{"합계", null, null, null, null, df.format(oTprice), df.format(sTtax), df.format(sTprice), null, df.format(sTmargin)};
+		return new Object[]{"합계", null, null, null, null, df.format(oTprice), df.format(sTtax), df.format(sTprice), null, df.format(sTmargin/100)};
 	}
 }
