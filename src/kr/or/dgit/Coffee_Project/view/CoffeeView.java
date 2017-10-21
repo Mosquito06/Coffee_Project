@@ -1,16 +1,12 @@
 package kr.or.dgit.Coffee_Project.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.Coffee_Project.Content.CoffeeContent;
+import kr.or.dgit.Coffee_Project.Content.ProductContent;
 import kr.or.dgit.Coffee_Project.common.AbstactListComponent;
 import kr.or.dgit.Coffee_Project.common.ProductListComponent;
 import kr.or.dgit.Coffee_Project.common.SaleListComponent;
@@ -28,7 +25,6 @@ import kr.or.dgit.Coffee_Project.dto.Coffee;
 import kr.or.dgit.Coffee_Project.dto.Product;
 import kr.or.dgit.Coffee_Project.service.CoffeeService;
 import kr.or.dgit.Coffee_Project.service.ProductService;
-import kr.or.dgit.Coffee_Project.Content.ProductContent;
 
 public class CoffeeView extends JFrame {
 
@@ -96,17 +92,33 @@ public class CoffeeView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					coffeecontent.isEmptyCheck();
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
-					return;
+				if (e.getActionCommand().equals("입력")) {
+					try {
+						coffeecontent.isEmptyCheck();
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
+						return;
+					}
+					Coffee coffee = coffeecontent.getContent();
+					listProduct.loadModel();
+					listCoffee.loadModel();
+					coffeecontent.clear();
 				}
-				Coffee coffee = coffeecontent.getContent();
-				CoffeeService.getInstance().insertItem(coffee);
-				listProduct.loadModel();
-				listCoffee.loadModel();
-				coffeecontent.clear();
+				if (e.getActionCommand().equals("수정")) {
+					try {
+						coffeecontent.isEmptyCheck();
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
+						return;
+					}
+					Coffee coffee = coffeecontent.getContent();
+					CoffeeService.getInstance().updateItem(coffee);
+					listProduct.loadModel();
+					listCoffee.loadModel();
+					coffeecontent.clear();
+					btnAdd.setText("입력");
+				}
+
 			}
 		});
 		InputBtnPanel.add(btnAdd);
@@ -226,7 +238,7 @@ public class CoffeeView extends JFrame {
 
 		JPanel SaleBtnPanel = new JPanel();
 		SalePanel.add(SaleBtnPanel, BorderLayout.SOUTH);
-		SaleBtnPanel.setLayout(new GridLayout(1, 0, 5, 0));
+		SaleBtnPanel.setLayout(new GridLayout(0, 2, 5, 0));
 
 		JButton btnDeleteSale = new JButton("\uC0AD\uC81C");
 		btnDeleteSale.addActionListener(new ActionListener() {
@@ -237,7 +249,7 @@ public class CoffeeView extends JFrame {
 				try {
 					CoffeeService.getInstance().deleteItem(coffee);
 				} catch (NullPointerException err) {
-					JOptionPane.showMessageDialog(null, "삭제할 실적을 선택하세요");
+					JOptionPane.showMessageDialog(null, "수정하거나 삭제할 실적을 선택하세요");
 					return;
 				}
 				listCoffee.loadModel();
@@ -245,6 +257,26 @@ public class CoffeeView extends JFrame {
 
 			}
 		});
+
+		JButton btnUpdateSale = new JButton("\uC218\uC815");
+		btnUpdateSale.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Coffee coffee = listCoffee.getListValue();
+				try {
+					coffeecontent.setContent(coffee);
+				} catch (NullPointerException err) {
+					JOptionPane.showMessageDialog(null, "수정하거나 삭제할 실적을 선택하세요");
+					return;
+				}
+				btnAdd.setText("수정");
+
+			}
+		});
+
+		SaleBtnPanel.add(btnUpdateSale);
+
 		SaleBtnPanel.add(btnDeleteSale);
 
 		JLabel label = new JLabel("\uC2E4\uC801\uAD00\uB9AC");
