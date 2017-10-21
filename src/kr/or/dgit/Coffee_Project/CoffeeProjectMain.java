@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.Coffee_Project.view.CoffeeView;
+import kr.or.dgit.Coffee_Setting.jdbcSetting;
 
 public class CoffeeProjectMain extends JFrame {
 
@@ -78,6 +79,22 @@ public class CoffeeProjectMain extends JFrame {
 		BtnBottomPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton BtnData = new JButton("DB \uC124\uCE58\uD558\uAE30");
+		BtnData.addActionListener(new ActionListener() {
+			
+			private jdbcSetting frame;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(frame == null){
+					frame = new jdbcSetting();
+					frame.setVisible(true);
+				}else{
+					frame.setVisible(true);
+				}
+				
+				
+			}
+		});
 		BtnBottomPanel.add(BtnData);
 		
 		JLabel ImgLabel = new JLabel("New label");

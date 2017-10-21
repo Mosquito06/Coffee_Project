@@ -1,0 +1,49 @@
+-- db 존재하면 삭제
+drop database if exists Coffee_Project;
+
+-- db 생성
+create database Coffee_Project;
+
+-- db 사용
+use Coffee_Project;
+
+-- 제품 테이블 생성
+create table if not exists Coffee_Project.product(
+	pCode char(4) primary key,
+	pName char(5) not null
+);
+
+-- 커피 테이블 생성
+create table if not exists Coffee_Project.Coffee(
+	pCode char(4),
+	pName char(5),
+	pPrice int,
+	pTotal int,
+	pMargin int,
+	primary key(pCode),
+	foreign key(pCode) references product(pCode)
+	on delete cascade
+);
+
+-- 수입 테이블 생성
+create table if not exists Coffee_Project.Income(
+	pCode char(4),
+	sPrice int,
+	sTax int,
+	oPrice int,
+	sMargin int,
+	primary key(pCode),
+	foreign key(pCode) references Coffee(pCode)
+	on delete cascade
+);
+
+-- 수입 테이블 삽입 트리거 생성
+create trigger input_income after insert on coffee_project.coffee for each row begin insert into coffee_project.income values (new.pCode, new.pPrice * new.pTotal, (new.pPrice * new.pTotal)/11, (new.pPrice * new.pTotal) - (new.pPrice * new.pTotal)/11, 
+((new.pPrice * new.pTotal) - (new.pPrice * new.pTotal)/11) * new.pMargin); end;
+
+-- 수입 테이블 수정 트리거 생성
+create trigger update_income after update on coffee_project.coffee for each row begin update coffee_project.income set pCode = new.pCode, sPrice = new.pPrice * new.pTotal, 
+sTax = (new.pPrice * new.pTotal)/11, oPrice = (new.pPrice * new.pTotal) - (new.pPrice * new.pTotal)/11, sMargin = ((new.pPrice * new.pTotal) - (new.pPrice * new.pTotal)/11) * new.pMargin where new.pCode = pCode; end;
+
+-- create and gran user
+grant select, insert, update, delete on Coffee_Project.* to 'Coffee_User' identified by '1234';
