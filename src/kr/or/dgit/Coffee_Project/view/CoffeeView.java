@@ -180,6 +180,7 @@ public class CoffeeView extends JFrame {
 				ProductService.getInstance().insertItem(product);
 				listProduct.loadModel();
 				listCoffee.loadModel();
+				productContent.clear();
 			}
 		});
 		ProductBtnPanel.add(btnAddProduct);
