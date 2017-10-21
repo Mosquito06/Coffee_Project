@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 public class DBCon {
 	private static final DBCon instance = new DBCon();
 	private Connection connection;
@@ -27,8 +29,11 @@ public class DBCon {
 					properties.getProperty("pwd"));
 			
 		} catch (SQLException e) {
-			System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
-			e.printStackTrace();
+			/*System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
+			e.printStackTrace();*/
+			if(e.getErrorCode() == 1049){
+				JOptionPane.showMessageDialog(null, "데이터베이스를 먼저 추가하세요");
+			}
 		}
 
 	}
