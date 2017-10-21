@@ -1,6 +1,8 @@
 package kr.or.dgit.Coffee_Project.view;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,6 +26,12 @@ public abstract class AbstractListView extends JFrame {
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		// 윈도우 창 이미지 변경
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage(System.getProperty("user.dir") + "\\images\\CoffeeIcon.png");
+		setIconImage(img);
+		
 		setLocationRelativeTo(null);
 		
 		abstractlist = CreatList();

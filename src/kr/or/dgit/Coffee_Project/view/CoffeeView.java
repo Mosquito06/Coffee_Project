@@ -3,6 +3,8 @@ package kr.or.dgit.Coffee_Project.view;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -50,6 +52,12 @@ public class CoffeeView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 0, 10, 10));
+		
+		// 윈도우 창 이미지 변경
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage(System.getProperty("user.dir") + "\\images\\CoffeeIcon.png");
+		setIconImage(img);
+		
 		setLocationRelativeTo(null);
 
 		coffeecontent = new CoffeeContent();
