@@ -45,7 +45,9 @@ public class CoffeeService {
 				coffeedao.insertItem(coffee);
 				JOptionPane.showMessageDialog(null, "추가 되었습니다.");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				if (e.getErrorCode() == 1062) {
+					JOptionPane.showMessageDialog(null, "이미 추가된 제품코드입니다.");
+				}
 			}
 	}
 	

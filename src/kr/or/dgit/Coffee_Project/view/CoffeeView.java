@@ -100,6 +100,7 @@ public class CoffeeView extends JFrame {
 						return;
 					}
 					Coffee coffee = coffeecontent.getContent();
+					CoffeeService.getInstance().insertItem(coffee);
 					listProduct.loadModel();
 					listCoffee.loadModel();
 					coffeecontent.clear();
@@ -107,7 +108,7 @@ public class CoffeeView extends JFrame {
 				if (e.getActionCommand().equals("수정")) {
 					try {
 						coffeecontent.isEmptyCheck();
-					} catch (Exception e1) {
+					} catch (Exception e3) {
 						JOptionPane.showMessageDialog(null, "데이터를 모두 입력해주세요.");
 						return;
 					}
