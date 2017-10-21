@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,6 +46,13 @@ public class CoffeeProjectMain extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		// 윈도우 창 이미지 변경
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage(System.getProperty("user.dir") + "\\images\\CoffeeIcon.png");
+		setIconImage(img);
+		
+		
 		setLocationRelativeTo(null);
 
 		JPanel BtnPanel = new JPanel();

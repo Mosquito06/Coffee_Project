@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -40,6 +43,11 @@ public class jdbcSetting extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		// 윈도우 창 이미지 변경
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage(System.getProperty("user.dir") + "\\images\\CoffeeIcon.png");
+		setIconImage(img);
+				
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
 		panel.setLayout(null);
