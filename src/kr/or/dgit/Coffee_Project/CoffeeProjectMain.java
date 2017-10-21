@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -81,7 +82,7 @@ public class CoffeeProjectMain extends JFrame {
 						frame.getListCoffee().loadModel();
 						frame.getListProduct().loadModel();
 						frame.setVisible(true);
-					}
+				}
 			}
 		});
 		BtnTopPanel.add(btnStart);
