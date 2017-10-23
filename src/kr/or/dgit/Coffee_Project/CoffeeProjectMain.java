@@ -13,8 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.Coffee_Project.view.CoffeeView;
@@ -26,6 +27,15 @@ public class CoffeeProjectMain extends JFrame {
 	private JPanel contentPane;
 
 	public static void main(String[] args) {
+	
+	try {
+		UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+			| UnsupportedLookAndFeelException e1) {
+		e1.printStackTrace();
+	}
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

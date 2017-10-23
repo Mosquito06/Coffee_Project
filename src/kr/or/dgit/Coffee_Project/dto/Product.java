@@ -36,7 +36,20 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return String.format("%s", pName == null? pCode: pName);
+		return String.format("%s", createTostring());
+	}
+
+	private Object createTostring() {
+		if(pCode == null || pName == null){
+			if(pCode == null){
+				return pName;
+			}else if(pName == null){
+				return pCode;
+			}
+		}else{
+			return pName+"("+pCode+")";
+		}
+		return null;
 	}
 
 }
