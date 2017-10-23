@@ -28,14 +28,6 @@ public class CoffeeProjectMain extends JFrame {
 
 	public static void main(String[] args) {
 	
-	try {
-		UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-			| UnsupportedLookAndFeelException e1) {
-		e1.printStackTrace();
-	}
-		
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
